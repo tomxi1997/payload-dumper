@@ -45,23 +45,17 @@ jobs:
         pip install git+https://github.com/tomxi1997/payload-dumper
         payload_dumper --partitions $PART $URL
         ls 
+        tar -czvf output.tar.xz output
         
           
         
 
 
 
-  
-
-    - name: add docker tar
-      run: |
-        sudo bash -c 'cd /data && tar -czvf docker.tar.xz docker && cp docker.tar.xz /home/runner/work/docker-28.0.2/docker-28.0.2/kernel_workspace'
-    
-
     - name: Upload image
       uses: actions/upload-artifact@v4
       with:
-        name: docker-arm64
-        path: kernel_workspace/docker.tar.xz
+        name: image
+        path: kernel_workspace/payload-dumper/output.tar.xz
 
   
