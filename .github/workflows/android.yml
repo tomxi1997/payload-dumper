@@ -34,7 +34,7 @@ jobs:
         sudo apt install -y curl vim git wget pip python-is-python3 unzip
         mkdir -p $GITHUB_WORKSPACE/kernel_workspace
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone https://github.com/tomxi1997/input-dumper
+        git clone https://github.com/tomxi1997/payload-dumper
 
   
 
