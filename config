@@ -1,0 +1,6 @@
+#需要提取分区
+PART=boot,dtbo,vendor
+
+
+#rom下载地址
+URL=http://otafs-cost.coloros.com/OnePlus8Pro_CH/OnePlus8ProHydrogen_15.H.45_0450_2202142225/patch/CHN/OnePlus8ProHydrogen/OnePlus8ProHydrogen_15.H.45_0450_2202142225/OnePlus8ProHydrogen_15.H.45_OTA_0450_all_2202142225_28f9f65cc8ce8.zip
