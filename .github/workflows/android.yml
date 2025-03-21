@@ -31,10 +31,10 @@ jobs:
         echo "BUILD_TIME=$(TZ=Asia/Shanghai date "+%Y%m%d%H%M")" >> $GITHUB_ENV
         echo "DEVICE=$(echo ${{ env.KERNEL_CONFIG }} | sed 's!vendor/!!;s/_defconfig//;s/_user//;s/-perf//')" >> $GITHUB_ENV
         sudo apt-get update
-        sudo apt install -y curl vim git wget pip python-is-python3
+        sudo apt install -y curl vim git wget pip python-is-python3 unzip
         mkdir -p $GITHUB_WORKSPACE/kernel_workspace
         cd $GITHUB_WORKSPACE/kernel_workspace
-        git clone https://github.com/tomxi1997/payload-dumper
+        git clone https://github.com/tomxi1997/input-dumper
 
   
 
@@ -42,9 +42,17 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace/payload-dumper
         source config
-        pip install git+https://github.com/tomxi1997/payload-dumper
-        payload_dumper --partitions $PART $URL
-        ls 
+        mkdir ./input ./output
+        wget -O test.zip $URL
+        unzip test.zip -d ./input
+        ls input
+        rm test.zip
+        chmod +x payload-dumper-go
+        ./payload-dumper-go input/payload.bin -output output -partitions $PART
+        #pip install git+https://github.com/tomxi1997/payload-dumper
+        #payload_dumper --partitions $PART $URL
+        ls output
+        rm input/payload.bin
         tar -czvf output.tar.xz output
         
           
